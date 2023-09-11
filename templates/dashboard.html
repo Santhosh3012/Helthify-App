@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <style>
+        /* Custom CSS for the dashboard page */
+        body {
+            background-color: #62a158;
+            font-family: 'Montserrat Alternates', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .dashboard-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dashboard-heading {
+            color: rgb(8, 12, 17);
+        }
+
+        /* Style the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Style the action links */
+        .action-links a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        /* Stylish rounded image */
+        .healthify-icon {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        /* Style the Update button */
+        .update-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <img src="https://cdn.dribbble.com/users/3923263/screenshots/14016716/dribbble-.jpg" class="healthify-icon" alt="Healthify Icon" />
+    <div class="dashboard-container">
+        <h2 class="dashboard-heading">Welcome to Dashboard</h2>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>Action</th>
+            </tr>
+        
+            {% for user in registered_users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.mobno }}</td>
+                    <td>{{ user.address }}</td>
+                    <td>{{ user.get_gender_display }}</td>
+                    <td class="action-links">
+                        <a href="{% url 'delete_user' user.id %}">Delete</a>
+                        <a href="/profile_view/{{ user.id }}/">View Profile</a>
+                        
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!-- credentials/templates/display_otp.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated OTP</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Generated OTP</h2>
+        <p>Here is the OTP that you generated:</p>
+        <p><strong>OTP:{{ request.session.otp }}</strong></p>
+    </div>
+     <a href="{% url 'verify_otp' %}">Click here to enter otp</a>
+</body>
+</html>
